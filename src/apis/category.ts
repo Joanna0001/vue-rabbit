@@ -18,7 +18,7 @@ export function getCategoryListAPI(): Promise<ApiResponse<Category[]>> {
 }
 
 // 获取-二级分类列表
-export function getCategoryAPI (id: string) {
+export function getCategoryAPI (id: string): Promise<ApiResponse> {
   return request({
     url: '/category',
     params: {
@@ -32,7 +32,7 @@ export function getCategoryAPI (id: string) {
  * @param {string} id 分类id 
  * @return {*}
  */
-export const getCategoryFilterAPI = (id: string) => {
+export const getCategoryFilterAPI = (id: string): Promise<ApiResponse> => {
   return request({
     url: '/category/sub/filter',
     params: {
@@ -58,7 +58,7 @@ export interface SubCategoryParams {
   sortField?: 'publishTime' | 'orderNum' | 'evaluateNum'
 }
 
-export const getSubCategoryAPI = (data: SubCategoryParams) => {
+export const getSubCategoryAPI = (data: SubCategoryParams): Promise<ApiResponse> => {
   return request({
     url: '/category/goods/temporary',
     method: 'POST',

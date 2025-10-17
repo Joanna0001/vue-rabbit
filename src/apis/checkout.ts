@@ -7,8 +7,21 @@ export const getCheckInfoAPI = () => {
   })
 }
 
+// 创建订单参数类型
+export interface CreateOrderParams {
+  deliveryTimeType: number
+  payType: number
+  payChannel: number
+  buyerMessage: string
+  goods: Array<{
+    skuId: string
+    count: number
+  }>
+  addressId: string
+}
+
 // 创建订单
-export const createOrderAPI = (data: any) => {
+export const createOrderAPI = (data: CreateOrderParams) => {
   return request({
     url: '/member/order',
     method: 'POST',

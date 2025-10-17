@@ -71,7 +71,7 @@ const createOrder = async () => {
         <div class="box-body">
           <div class="address">
             <div class="text">
-              <div class="none" v-if="!curAddress">您需要先添加收货地址才可提交订单。</div>
+              <div v-if="!curAddress" class="none">您需要先添加收货地址才可提交订单。</div>
               <ul v-else>
                 <li><span>收<i />货<i />人：</span>{{ curAddress.receiver }}</li>
                 <li><span>联系方式：</span>{{ curAddress.contact }}</li>
@@ -154,7 +154,7 @@ const createOrder = async () => {
         </div>
         <!-- 提交订单 -->
         <div class="submit">
-          <el-button @click="createOrder" type="primary" size="large">提交订单</el-button>
+          <el-button type="primary" size="large" @click="createOrder">提交订单</el-button>
         </div>
       </div>
     </div>
@@ -162,8 +162,9 @@ const createOrder = async () => {
   <!-- 切换地址 -->
   <el-dialog v-model="showDialog" title="切换收货地址" width="30%" center>
     <div class="addressWrapper">
-      <div class="text item" :class="{ active: activeAddress.id === item.id }" @click="switchAddress(item)"
-        v-for="item in checkInfo.userAddresses" :key="item.id">
+      <div
+v-for="item in checkInfo.userAddresses" :key="item.id" class="text item"
+        :class="{ active: activeAddress.id === item.id }" @click="switchAddress(item)">
         <ul>
           <li><span>收<i />货<i />人：</span>{{ item.receiver }} </li>
           <li><span>联系方式：</span>{{ item.contact }}</li>

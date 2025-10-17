@@ -1,5 +1,5 @@
 // 封装所有和用户相关的接口函数
-import request, { type ApiResponse } from '@/utils/http'
+import request from '@/utils/http'
 
 export interface LoginParams {
   account: string
@@ -20,7 +20,7 @@ export interface UserInfo {
   profession?: string
 }
 
-export const loginAPI = ({ account, password }: LoginParams): Promise<ApiResponse<UserInfo>> => {
+export const loginAPI = ({ account, password }: LoginParams) => {
   return request({
     url: '/login',
     method: 'POST',

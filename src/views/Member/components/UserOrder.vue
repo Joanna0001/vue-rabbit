@@ -62,17 +62,17 @@ const fomartPayState = (payState) => {
       <el-tab-pane v-for="item in tabTypes" :key="item.name" :label="item.label" />
 
       <div class="main-container">
-        <div class="holder-container" v-if="orderList.length === 0">
+        <div v-if="orderList.length === 0" class="holder-container">
           <el-empty description="暂无订单数据" />
         </div>
         <div v-else>
           <!-- 订单列表 -->
-          <div class="order-item" v-for="order in orderList" :key="order.id">
+          <div v-for="order in orderList" :key="order.id" class="order-item">
             <div class="head">
               <span>下单时间：{{ order.createTime }}</span>
               <span>订单编号：{{ order.id }}</span>
               <!-- 未付款，倒计时时间还有 -->
-              <span class="down-time" v-if="order.orderState === 1">
+              <span v-if="order.orderState === 1" class="down-time">
                 <i class="iconfont icon-down-time"></i>
                 <b>付款截止: {{ order.countdown }}</b>
               </span>
@@ -134,8 +134,9 @@ const fomartPayState = (payState) => {
           </div>
           <!-- 分页 -->
           <div class="pagination-container">
-            <el-pagination :total="total" @current-change="pageChange" :page-size="params.pageSize" background
-              layout="prev, pager, next" />
+            <el-pagination
+:total="total" :page-size="params.pageSize" background layout="prev, pager, next"
+              @current-change="pageChange" />
           </div>
         </div>
       </div>

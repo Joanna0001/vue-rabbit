@@ -21,8 +21,8 @@ onMounted(() => getOrderInfo())
       <!-- 支付结果 -->
       <div class="pay-result">
         <!-- 路由参数获取到的是字符串而不是布尔值 -->
-        <span class="iconfont icon-queren2 green" v-if="$route.query.payResult === 'true'"></span>
-        <span class="iconfont icon-shanchu red" v-else></span>
+        <span v-if="$route.query.payResult === 'true'" class="iconfont icon-queren2 green"></span>
+        <span v-else class="iconfont icon-shanchu red"></span>
         <p class="tit">支付{{ $route.query.payResult === 'true' ? '成功' : '失败' }}</p>
         <p class="tip">我们将尽快为您发货，收货期间请保持手机畅通</p>
         <p>支付方式：<span>支付宝</span></p>

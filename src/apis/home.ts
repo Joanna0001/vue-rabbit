@@ -5,10 +5,10 @@ export interface BannerParams {
   distributionSite?: '1' | '2'
 }
 
-export function getBannerAPI<T = unknown>(params: BannerParams = {}) {
+export function getBannerAPI(params: BannerParams = {}) {
   // 默认为1 商品为2
   const { distributionSite = '1' } = params
-  return httpInstance<T>({
+  return httpInstance({
     url: '/home/banner',
     params: {
       distributionSite

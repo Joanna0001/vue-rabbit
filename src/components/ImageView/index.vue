@@ -75,13 +75,17 @@ watch([elementX, elementY, isOutside], () => {
       </li>
     </ul>
     <!-- 放大镜大图 -->
-    <div class="large" :style="[
-      {
-        backgroundImage: `url(${imageList[0]})`,
-        backgroundPositionX: `${positionX}px`,
-        backgroundPositionY: `${positionY}px`,
-      },
-    ]" v-show="!isOutside"></div>
+    <div
+      v-show="!isOutside"
+      class="large"
+      :style="[
+        {
+          backgroundImage: `url(${imageList[0]})`,
+          backgroundPositionX: `${positionX}px`,
+          backgroundPositionY: `${positionY}px`,
+        },
+      ]"
+    ></div>
   </div>
 </template>
 
