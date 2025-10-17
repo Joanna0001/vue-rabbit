@@ -26,13 +26,13 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '~/': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "~/styles/element/index.scss" as *;`,
+        api: 'modern-compiler', // 使用现代 Sass API
+        additionalData: `@use "@/styles/element/index.scss" as *;@use "@/styles/var.scss" as *;`,
       },
     },
   },

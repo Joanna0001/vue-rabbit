@@ -1,14 +1,14 @@
 // axios基础的封装
 import axios from 'axios'
-import type { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import type { AxiosInstance, InternalAxiosRequestConfig, AxiosError } from 'axios'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/userStore'
 
 // 定义响应数据的通用接口
 export interface ApiResponse<T = unknown> {
   code: string | number
-  message: string
-  data: T
+  msg: string
+  result: T
 }
 
 // 定义错误响应数据结构
@@ -43,7 +43,7 @@ httpInstance.interceptors.request.use(
 
 // axios响应拦截器
 httpInstance.interceptors.response.use(
-  <T = unknown>(response: AxiosResponse<T>): T => {
+  (response) => {
     return response.data
   },
   (error: AxiosError<ErrorResponse>): Promise<AxiosError> => {
