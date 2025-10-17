@@ -1,6 +1,6 @@
 <template>
   <el-config-provider :locale="zhCn">
-    <el-button type="primary">Click me</el-button>
+    <router-view />
   </el-config-provider>
 </template>
 
