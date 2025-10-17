@@ -2,24 +2,9 @@
 
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { loginAPI } from '@/apis/user'
+import { loginAPI, type UserInfo } from '@/apis/user'
 import { useCartStore } from './cartStore'
 import { mergeCartAPI } from '@/apis/cart'
-
-// 定义用户信息类型
-interface UserInfo {
-  id?: string
-  account?: string
-  nickname?: string
-  avatar?: string
-  token?: string
-  mobile?: string
-  birthday?: string
-  cityCode?: string
-  provinceCode?: string
-  gender?: string
-  profession?: string
-}
 
 // 定义登录参数类型
 interface LoginParams {
@@ -34,7 +19,7 @@ export const useUserStore = defineStore('user', () => {
   // 2. 定义获取接口数据的action函数
   const getUserInfo = async ({ account, password }: LoginParams) => {
     const res = await loginAPI({ account, password })
-    userInfo.value = res.data.result
+    userInfo.value = res.result
     // 合并购物车的操作
     await mergeCartAPI(cartStore.cartList.map(item => {
       return {

@@ -3,10 +3,18 @@ import './styles/index.scss'
 import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
-import { lazyPlugin } from './directives'
-
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
+// 引入懒加载指令插件并且注册
+import { lazyPlugin } from '@/directives'
+// 引入全局组件插件
+import { componentPlugin } from '@/components'
 
-createApp(App).use(router).use(pinia).use(lazyPlugin).mount('#app')
+const app = createApp(App)
+const pinia = createPinia()
+// 注册持久化插件
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia)
+app.use(router)
+app.use(lazyPlugin)
+app.use(componentPlugin)
+app.mount('#app')

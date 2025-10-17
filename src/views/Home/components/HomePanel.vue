@@ -3,11 +3,13 @@
 defineProps({
   // 主标题
   title: {
-    type: String
+    type: String,
+    default: ''
   },
   // 副标题
   subTitle: {
-    type: String
+    type: String,
+    default: ''
   }
 })
 
