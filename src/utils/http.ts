@@ -3,7 +3,7 @@ import axios from 'axios'
 import type { AxiosInstance, InternalAxiosRequestConfig, AxiosError, AxiosRequestConfig } from 'axios'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/userStore'
-
+import router from '@/router'
 // 定义响应数据的通用接口
 export interface ApiResponse<T = unknown> {
   code: string | number
@@ -53,6 +53,13 @@ httpInstance.interceptors.response.use(
     return response.data
   },
   (error: AxiosError<ErrorResponse>): Promise<AxiosError> => {
+    if (error.response?.status === 401) {
+      // 清空用户信息
+      const userStore = useUserStore()
+      userStore.clearUserInfo()
+      // 跳转登录
+      router.push({ path: '/login' })
+    }
     // 统一错误提示
     const message = error.response?.data?.message || error.message || '请求失败'
     ElMessage({

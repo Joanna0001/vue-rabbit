@@ -4,11 +4,11 @@
       <dt>{{ item.name }}</dt>
       <dd>
         <template v-for="val in item.values" :key="val.name">
-          <img
-v-if="val.picture" :class="{ selected: val.selected, disabled: val.disabled }"
-            :src="val.picture" @click="clickSpecs(item, val)" />
+          <img 
+            v-if="val.picture" :class="{ selected: val.selected, disabled: val.disabled }" :src="val.url"
+            @click="clickSpecs(item, val)" />
           <span v-else :class="{ selected: val.selected, disabled: val.disabled }" @click="clickSpecs(item, val)">{{
-              val.name
+            val.name
           }}</span>
         </template>
       </dd>
@@ -46,7 +46,7 @@ const getPathMap = (skus) => {
 }
 
 // 初始化禁用状态
-function initDisabledStatus (specs, pathMap) {
+function initDisabledStatus(specs, pathMap) {
   if (specs && specs.length > 0) {
     specs.forEach(spec => {
       spec.values.forEach(val => {
@@ -100,7 +100,7 @@ export default {
     }
   },
   emits: ['change'],
-  setup (props, { emit }) {
+  setup(props, { emit }) {
     let pathMap = {}
     watchEffect(() => {
       // 得到所有字典集合

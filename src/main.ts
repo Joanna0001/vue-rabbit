@@ -3,6 +3,7 @@ import './styles/index.scss'
 import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
+import 'element-plus/dist/index.css'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 // 引入懒加载指令插件并且注册
 import { lazyPlugin } from '@/directives'

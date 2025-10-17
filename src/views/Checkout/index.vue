@@ -182,6 +182,8 @@ v-for="item in checkInfo.userAddresses" :key="item.id" class="text item"
 <!-- 添加地址 --></template>
 
 <style scoped lang="scss">
+@use "sass:color";
+
 .xtx-pay-checkout-page {
   margin-top: 20px;
 
@@ -383,7 +385,7 @@ v-for="item in checkInfo.userAddresses" :key="item.id" class="text item"
     &.active,
     &:hover {
       border-color: $xtxColor;
-      background: lighten($xtxColor, 50%);
+      background: color.adjust($xtxColor, $lightness: 50%);
     }
 
     >ul {
