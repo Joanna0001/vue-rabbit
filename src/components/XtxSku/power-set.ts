@@ -1,6 +1,6 @@
 
-export default function bwPowerSet (originalSet) {
-  const subSets = []
+export default function bwPowerSet<T>(originalSet: T[]): T[][] {
+  const subSets: T[][] = []
 
   // We will have 2^n possible combinations (where n is a length of original set).
   // It is because for every element of original set we will decide whether to include
@@ -12,12 +12,12 @@ export default function bwPowerSet (originalSet) {
   // For example, for the set {1, 2, 3} the binary number of 0b010 would mean that we need to
   // include only "2" to the current set.
   for (let combinationIndex = 0; combinationIndex < numberOfCombinations; combinationIndex += 1) {
-    const subSet = []
+    const subSet: T[] = []
 
     for (let setElementIndex = 0; setElementIndex < originalSet.length; setElementIndex += 1) {
       // Decide whether we need to include current element into the subset or not.
       if (combinationIndex & (1 << setElementIndex)) {
-        subSet.push(originalSet[setElementIndex])
+        subSet.push(originalSet[setElementIndex]!)
       }
     }
 
@@ -27,3 +27,4 @@ export default function bwPowerSet (originalSet) {
 
   return subSets
 }
+

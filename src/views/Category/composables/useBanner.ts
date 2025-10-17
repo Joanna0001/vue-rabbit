@@ -2,14 +2,20 @@
 import { ref, onMounted } from 'vue'
 import { getBannerAPI } from '@/apis/home'
 
-export function useBanner () {
-  const bannerList = ref([])
+interface Banner {
+  id: string
+  imgUrl: string
+  hrefUrl: string
+  type: string
+}
+
+export function useBanner() {
+  const bannerList = ref<Banner[]>([])
 
   const getBanner = async () => {
-    const res = await getBannerAPI({
+    const res = await getBannerAPI<Banner[]>({
       distributionSite: '2'
     })
-    console.log(res)
     bannerList.value = res.result
   }
 
@@ -19,3 +25,4 @@ export function useBanner () {
     bannerList
   }
 }
+

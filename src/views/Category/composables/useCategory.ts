@@ -4,11 +4,11 @@ import { getCategoryAPI } from '@/apis/category'
 import { useRoute } from 'vue-router'
 import { onBeforeRouteUpdate } from 'vue-router'
 
-export function useCategory () {
+export function useCategory() {
   // 获取分类数据
-  const categoryData = ref({})
+  const categoryData = ref<any>({})
   const route = useRoute()
-  const getCategory = async (id = route.params.id) => {
+  const getCategory = async (id: string | string[] = route.params.id) => {
     const res = await getCategoryAPI(id)
     categoryData.value = res.result
   }
@@ -23,3 +23,4 @@ export function useCategory () {
     categoryData
   }
 }
+

@@ -1,6 +1,6 @@
 // axios基础的封装
 import axios from 'axios'
-import type { AxiosInstance, InternalAxiosRequestConfig, AxiosError } from 'axios'
+import type { AxiosInstance, InternalAxiosRequestConfig, AxiosError, AxiosRequestConfig } from 'axios'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/userStore'
 
@@ -18,11 +18,17 @@ interface ErrorResponse {
   [key: string]: unknown
 }
 
+// 扩展 AxiosInstance 类型，明确返回类型
+interface HttpInstance extends AxiosInstance {
+  <T = unknown>(config: AxiosRequestConfig): Promise<ApiResponse<T>>
+  <T = unknown>(url: string, config?: AxiosRequestConfig): Promise<ApiResponse<T>>
+}
+
 // 创建 axios 实例
-const httpInstance: AxiosInstance = axios.create({
+const httpInstance = axios.create({
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
   timeout: 5000
-})
+}) as HttpInstance
 
 // axios请求拦截器
 httpInstance.interceptors.request.use(
