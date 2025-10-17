@@ -1,13 +1,7 @@
 <script setup>
 import { useCategoryStore } from '@/stores/categoryStore'
-import { onMounted } from 'vue';
 const categoryStore = useCategoryStore()
-
-onMounted(() => {
-  categoryStore.getCategoryList()
-})
 </script>
-
 
 <template>
   <ul class="app-header-nav">

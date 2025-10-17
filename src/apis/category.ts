@@ -10,9 +10,20 @@ export interface Category {
   children?: Category[]
 }
 
-export function getCategoryAPI(): Promise<ApiResponse<Category[]>> {
+// 获取-全部分类(包含推荐商品)
+export function getCategoryListAPI(): Promise<ApiResponse<Category[]>> {
   return request({
     url: '/home/category/head'
+  })
+}
+
+// 获取-二级分类列表
+export function getCategoryAPI (id: string) {
+  return request({
+    url: '/category',
+    params: {
+      id
+    }
   })
 }
 
