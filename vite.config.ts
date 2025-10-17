@@ -1,3 +1,4 @@
+import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import eslintPlugin from 'vite-plugin-eslint2'
@@ -14,10 +15,24 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver({
+        importStyle: "sass",
+      })],
     }),
     eslintPlugin({
       include: ['src/**/*.ts', 'src/**/*.vue', 'src/*.ts', 'src/*.vue'],
     }),
   ],
+  resolve: {
+    alias: {
+      '~/': `${path.resolve(__dirname, 'src')}/`,
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "~/styles/element/index.scss" as *;`,
+      },
+    },
+  },
 })
